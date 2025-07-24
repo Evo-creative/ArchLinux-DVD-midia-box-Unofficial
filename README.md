@@ -3,7 +3,7 @@ Modified on Isoheptane/arch-media-box
 I'm sorry that we only have Chinese version releases for now.  
 English version will be made eventually.  
 
-#Readme English Ver (Basically AI translated,but has been checked manually)
+# Readme English Ver (Basically AI translated,but has been checked manually)
 
 ## Used Fonts  
 
