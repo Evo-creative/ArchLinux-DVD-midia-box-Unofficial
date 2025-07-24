@@ -1,2 +1,3 @@
-# ArchLinux-midia-box-Unofficial-
+# [Unofficial]ArchLinux-midia-box
 Modified on Isoheptane/arch-media-box
+
