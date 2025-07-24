@@ -1,4 +1,4 @@
-# [Unofficial]ArchLinux-midia-box
+# [Unofficial]ArchLinux-DVD-midia-box
 Modified on Isoheptane/arch-media-box
 ## Used Fonts
 Noto Sans
