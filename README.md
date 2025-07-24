@@ -1,7 +1,7 @@
 # [Unofficial]ArchLinux-DVD-midia-box
-Modified on Isoheptane/arch-media-box
+Modified on Isoheptane/arch-media-box  
 ## Used Fonts
-Noto Sans
-Noto SansCJK SC
-Roboto Mono
-DejaVu Sans
+Noto Sans  
+Noto Sans CJK SC  
+Roboto Mono  
+DejaVu Sans  
