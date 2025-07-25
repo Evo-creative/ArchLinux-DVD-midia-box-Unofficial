@@ -19,8 +19,7 @@ Inconsolata
 The box_source.png can be directly printed on 300g A3 art paper, but it needs to be adjusted to fit the A3 size.  
 If the resolution is insufficient, you may use the original box_source.svg file. Since the paths in the file are not converted, you will need the fonts listed in the Used Fonts section.  
   
-InstallationGuide provide instructions on how to install ArchLinux,there is no emphasis on aesthetics.  
-If anyone is willing to help improve the design of InstallationGuide, please contact me.  
+InstallationGuide provide instructions on how to install ArchLinux.
   
 The intruction folder contains the user manual. The PNG files can be printed directly on A4 paper.  
   
@@ -44,8 +43,7 @@ Inconsolata
 
 box_source.png可以直接使用300gA3铜版纸打印，需要适应A3大小  
 如果觉得不够清晰可以使用原始的box_source.svg，文件没有转换路径所以需要上方字体列表的字体  
-InstallationGuide.pdf和InstallationGuide.tex就是告诉你怎么安装ArchLinux,毫无美观性可言  
-如果有人愿意帮助美化InstallationGuide请联系我  
+InstallationGuide.pdf和InstallationGuide.tex教你怎么安装ArchLinux=
 intruction是说明书，png可以直接用A4打印  
   
 ## 声明  
