@@ -1,0 +1,351 @@
+\documentclass{article}
+\setlength\parindent{0pt}
+\pagenumbering{gobble}
+\usepackage{xcolor}
+\usepackage{geometry}
+\geometry{papersize={210mm,297mm}}
+\geometry{left=9mm,right=9mm,top=9mm,bottom=9mm}
+\usepackage{parskip} 
+\setlength{\parskip}{\baselineskip}
+\usepackage{graphicx} 
+\usepackage{epstopdf} 
+\epstopdfsetup{update}
+
+\newenvironment{singlecolumn}{%
+	\par
+	\noindent
+	\begin{minipage}[t]{\textwidth} % 关键约束
+		\setlength{\parfillskip}{0pt plus 1fil} % 防止右对齐
+	}{%
+	\end{minipage}
+	\par
+}
+\usepackage{fontspec}
+\setmainfont{DejaVu Sans}[Scale=0.9]
+
+\usepackage{xeCJK}
+\CJKfamily{zhsong}
+
+\usepackage[svgcolors]{xcolor}
+\usepackage{longfbox}
+\usepackage{epstopdf}
+\usepackage{float}
+\usepackage{xpatch}
+\usepackage{tipa}
+\usepackage[export]{adjustbox}
+\usepackage{enumitem}
+\usepackage{mdframed}
+\usepackage{tcolorbox}
+\tcbuselibrary{listings}
+
+\usepackage{multirow}
+\usepackage{tabularx}
+\renewcommand\tabularxcolumn[1]{m{#1}} % for vertical centering text in X column
+
+\usepackage{multicol}
+\usepackage[most]{tcolorbox}
+\usepackage{amssymb}
+\setlength{\columnsep}{0mm}
+
+\usepackage[explicit,compact]{titlesec}
+\titleformat{\section}{\normalfont\bfseries}{}{0pt}{【#1】}
+
+% 啊！万能的 StackExchange！
+% https://tex.stackexchange.com/questions/475466/latex-three-column-layout-merging-two-of-them-at-the-begining
+%
+\newlength{\abstractwidth}
+\newlength{\columnshrink}
+\newsavebox{\twocolinsert}
+%
+\makeatletter
+\newlength{\resized@col}
+\newcounter{column@count}
+%
+\xpatchcmd{\multi@column@out}{
+	\process@cols\mult@gfirstbox{%
+		\setbox\count@
+		\vsplit\@cclv to\dimen@
+		\set@keptmarks
+		\setbox\count@
+		\vbox to\dimen@
+		{\unvbox\count@ \ifshr@nking\vfilmaxdepth\fi}%
+	}%
+}{
+	\process@cols\mult@gfirstbox{%
+		\global\advance\c@column@count\@ne
+		\resized@col\dimen@%
+		\ifnum\c@column@count=\tw@
+		\advance\resized@col-\columnshrink
+		\fi%
+		\setbox\count@
+		\vsplit\@cclv to\resized@col
+		\set@keptmarks
+		\setbox\count@
+		\vbox to\dimen@{
+			\ifnum
+			\c@column@count=\tw@
+			\fi
+			\unvbox\count@
+			\ifshr@nking\vfilmaxdepth\fi
+		}%
+	}%
+}{\typeout{Success}}{\typeout{Failure}}
+\makeatother
+
+% for designing header
+\newsavebox\mysavebox
+\newenvironment{imgminipage}[2][]{%
+	\def\imgcmd{\includegraphics[width=\wd\mysavebox, height=\dimexpr\ht\mysavebox+\dp\mysavebox\relax, #1]{#2}}%
+	\begin{lrbox}{\mysavebox}%
+		\begin{minipage}%
+		}{%
+		\end{minipage}
+	\end{lrbox}%
+	\sbox\mysavebox{\setlength{\fboxrule}{0pt}\fbox{\usebox\mysavebox}}%
+	\mbox{\rlap{\raisebox{-\dp\mysavebox}{\imgcmd}}\usebox\mysavebox}%
+}
+
+\renewcommand{\labelitemi}{$\blacktriangleright$}
+
+\tcbset{
+	frame code={}
+	center title,
+	left=0pt,
+	right=0pt,
+	top=6pt,
+	bottom=0pt,
+	colback=gray!40,
+	colframe=white,
+	enlarge left by=0mm,
+	boxsep=0pt,
+	arc=0pt,outer arc=0pt,
+}
+
+\definecolor{code}{RGB}{26.3, 68.2, 132.5}
+\definecolor{bios}{RGB}{100, 0, 100}
+\definecolor{uefi}{RGB}{100, 100, 0}
+
+\begin{document}
+\begin{singlecolumn}
+	\vspace*{1\baselineskip}
+	\noindent
+\begin{minipage}[t]{0.48\textwidth} % 左图
+	\includegraphics[width=\linewidth]{assets/archlinux-logo-with-text.eps}
+\end{minipage}
+	\hfill
+\begin{minipage}[t]{0.5\textwidth}
+	\raggedleft
+	\includegraphics[width=\linewidth]{assets/header-background1.2.eps}
+\end{minipage}
+\vspace{\baselineskip}
+\begin{tcolorbox}
+\section*{安装前准备}
+\end{tcolorbox}
+
+请按照说明书上的“满足硬件最低要求”部分准备好一个能够正常进行开机和引导加载的主机。主机需要有一个能正常读取DVD光盘的光盘驱动器。开机并进入BIOS设置页面，按下光驱的弹出按钮弹出光驱。将ArchLinux光盘安装媒介印刷面向上数据面向下平稳放置于托盘中央的圆形卡槽内。轻推托盘至闭合位置或再次按下弹出按钮。待光盘加载完毕，关闭主机并再次开机进入BIOS设置页面。请根据引导方式选择引导设备或分区。\textcolor{uefi}{UEFI引导方式请选择：UEFI:[存储驱动器名称]:Partition[EFI引导分区]}\textcolor{bios}{BIOS引导方式请选择：[储存驱动器名称]保存并退出}
+
+\medskip
+
+\begin{tcolorbox}
+	\section*{启动}
+\end{tcolorbox}
+
+进入Grub引导加载页面后，请保持默认选项。如果你需要朗读，请选择带有"with speech"字样的选项。系统接下来会启动到一个终端页面。
+
+\medskip
+
+\begin{tcolorbox}
+	\section*{分区准备}
+\end{tcolorbox}
+
+你需要先为ArchLinux系统创建系统分区。 
+\textcolor{code}{\textbf{以下操作会清空分区表，确保磁盘中的所有数据已备份或不再需要。} }
+\begin{tcolorbox}[
+	title=bash,
+	boxrule=1pt,
+	fonttitle=\bfseries,
+	listing only, 
+	listing options={language=bash}
+	]
+	\verb|lsblk #查看磁盘和现有分区|\\
+	\verb|fdisk /dev/sda #"sda"填写你的目标安装分区，注意不要写分区号|\\
+\end{tcolorbox}
+输入p打印当前分区表，记录要删除的分区号（如dev/sda1）
+输入d删除分区，根据提示输入你要删除的分区号。
+重复删除直到所有旧分区消失。
+\textcolor{bios}{对于BIOS引导：输入o创建新的MBR分区表。}
+\textcolor{uefi}{对于UEFI引导：输入g创建新的GPT分区表。}
+输入\textcolor{code}{w}，保存并退出。
+\textcolor{bios}{对于BIOS引导：输入n创建新分区，选择p主分区，起始扇区默认，结束扇区不需要其他分区请默认。
+需要swap请：\textcolor{code}{n,p,2,回车,+8G(根据你自己想要的大小选择),t,2,82（设置swap类型）
+输入a将分区标记为可启动，输入p确认分区布局，输入w保存。}}\\
+\begin{tcolorbox}[
+	title=bash,
+	boxrule=1pt,
+	fonttitle=\bfseries,
+	listing only, 
+	listing options={language=bash}
+	]
+	\verb|#注意将/dev/sda1,/dev/sda2换成你自己的分区号|\\
+	\verb|mkfs.ext4 /dev/sda1 #将根分区格式化为Ext4|\\
+	\verb|mkswap #格式化swap（如有）|\\
+	\verb|swapon /dev/sda2 #启动swap|\\
+\end{tcolorbox}
+\textcolor{uefi}{对于UEFI引导：输入n创建新分区，分区号1,起始扇区默认，大小输入+1G,输入t,选择1(EFI System) ，再输入n创建新分区，分区号2,使用剩余全部分区，输入p确认分区布局，输入w保存。}\\
+\begin{tcolorbox}[
+	title=bash,
+	boxrule=1pt,
+	fonttitle=\bfseries,
+	listing only, 
+	listing options={language=bash}
+	]
+	\verb|#注意将/dev/nvme0n1p1,/dev/nvme0n1p2换成你自己的分区号|\\
+	\verb|mkfs.fat -F32 /dev/nvme0n1p1 #格式化EFI分区为FAT32,EFI分区必须为FAT32|\\
+	\verb|mkfs.ext4 /dev/nvme0n1p2 #将根分区格式化为Ext4|\\
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}
+\section*{更改镜像源}
+\end{tcolorbox}
+
+你需要更改镜像源以加速安装\\
+\begin{tcolorbox}[
+	title=bash,
+	boxrule=1pt,
+	fonttitle=\bfseries,
+	listing only, 
+	listing options={language=bash}
+	]
+	\verb|nano /etc/pacman.d/mirrorlist|\\
+\end{tcolorbox}
+镜像源文件格式为\\
+\textcolor{code}{Server = [镜像源地址]}\\
+如果你在CN，可以使用以下镜像源\\
+清华源：\textcolor{code}{Server = https://mirrors.tuna.tsinghua.edu/archlinux/$repo/os/$arch}\\
+中科大源：\textcolor{code}{Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch}\\
+或自动选择最快镜像\\
+\begin{tcolorbox}[
+	title=bash,
+	boxrule=1pt,
+	fonttitle=\bfseries,
+	listing only, 
+	listing options={language=bash}
+	]
+	\verb|pacman -S reflector|\\
+	\verb|reflector --country China --sort rate --save /etc/pacman.d/mirrorlist|\\
+\end{tcolorbox}
+
+\medskip
+
+\end{singlecolumn}
+\pagebreak
+\begin{singlecolumn}
+	
+\begin{tcolorbox}
+	\section*{安装基础系统}
+\end{tcolorbox}
+
+\begin{tcolorbox}[
+	title=bash,
+	boxrule=1pt,
+	fonttitle=\bfseries,
+	listing only, 
+	listing options={language=bash}
+	]
+	\verb|mount [你的根分区分区号] /mnt #挂载根分区|\\
+	\verb|pacstrap /mnt base linux linux-firmware #安装基础系统,安装时软件包请自行选择，不会选择请默认|\\
+	\verb|genfstab -U /mnt >> /mnt/etc/fstab #生成fstab|\\
+	\verb|arch-root /mnt #进入新系统|\\
+\end{tcolorbox}	
+
+\medskip
+
+\begin{tcolorbox}
+	\section*{安装Grub引导加载器}
+\end{tcolorbox}
+
+\textcolor{bios}{对于BIOS引导：}\\
+\begin{tcolorbox}[
+	title=bash,
+	boxrule=1pt,
+	fonttitle=\bfseries,
+	listing only, 
+	listing options={language=bash}
+	]
+	\verb|pacman -S grub|
+	\verb|grub-install --target=i386-pc [你的磁盘号，注意不是分区] #安装grub|\\
+	\verb|grub-mkconfig -o /boot/grub/grub.cfg #生成grub配置|\\
+\end{tcolorbox}
+\textcolor{uefi}{对于UEFI引导：}\\
+\begin{tcolorbox}[
+	title=bash,
+	boxrule=1pt,
+	fonttitle=\bfseries,
+	listing only, 
+	listing options={language=bash}
+	]
+	\verb|pacman -S grub efibootmgr|\\
+	\verb|verbgrub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB #安装grub|\\
+	\verb|grub-mkconfig -o /boot/grub/grub.cfg #生成grub配置|\\
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}
+	\section*{安装桌面环境}
+\end{tcolorbox}
+
+不需要图形化操作可以不安装桌面环境。
+对于ArchLinux,推荐使用KDE Plasma,不推荐使用gnome。
+如果需要轻量级的桌面环境请选择xfce4\\
+\begin{tcolorbox}[
+	title=bash,
+	boxrule=1pt,
+	fonttitle=\bfseries,
+	listing only, 
+	listing options={language=bash}
+	]
+	\verb|pacman -S plasma-meta konsole dolphin sddm|\\
+	\verb|systemctl enable sddm|\\
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}
+	\section*{重启进入新系统}
+\end{tcolorbox}
+
+\begin{tcolorbox}[
+	title=bash,
+	boxrule=1pt,
+	fonttitle=\bfseries,
+	listing only, 
+	listing options={language=bash}
+	]
+	\verb|exit|\\
+	\verb|umount -R /mnt|\\
+	\verb|reboot|\\
+\end{tcolorbox}
+
+\medskip
+
+\begin{tcolorbox}
+	\section*{注意事项}
+\end{tcolorbox}
+本指南写于2025.07.21,不一定适用您所在的时间。
+本指南并没有对于系统设置及语言设置的指导，请自行研究。
+本项目非官方项目，所有日期均无实际意义。\\
+\verb|一行文字#后面的部分是注释，不要输入进去啊笨蛋！|\\
+\verb|[括起来的]要带着中括号一起换掉|\\
+
+\medskip
+
+\begin{tabularx}{\linewidth}{@{}ll@{}}
+	\multirow{2}{*}{}{编审：} & @Evo-creative\\
+	GitHub: & Evo-creative/ArchLinux-DVD-midia-box-Unofficial\\
+\end{tabularx}
+
+\end{singlecolumn}
+\end{document}
