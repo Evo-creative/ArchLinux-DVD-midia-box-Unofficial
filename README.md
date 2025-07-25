@@ -43,7 +43,7 @@ Inconsolata
 
 box_source.png可以直接使用300gA3铜版纸打印，需要适应A3大小  
 如果觉得不够清晰可以使用原始的box_source.svg，文件没有转换路径所以需要上方字体列表的字体  
-InstallationGuide.pdf和InstallationGuide.tex教你怎么安装ArchLinux=
+InstallationGuide.pdf和InstallationGuide.tex教你怎么安装ArchLinux  
 intruction是说明书，png可以直接用A4打印  
   
 ## 声明  
