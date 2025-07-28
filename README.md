@@ -27,6 +27,7 @@ The intruction folder contains the user manual. The PNG files can be printed dir
 
 This work is licensed under both the CC BY-SA 3.0 and CC BY-SA 4.0 licenses.  
 This is an unofficial project, and all dates mentioned hold no actual significance.  
+This repo strongly discourages commercial use, as it may lead to icon disputes.  
   
 # Readme中文版本  
   
@@ -50,3 +51,4 @@ intruction是说明书，png可以直接用A4打印
 
 本作品采用 CC BY-SA 3.0 许可协议和 CC BY-SA 4.0 许可协议进行许可。  
 本项目为非官方项目，所有日期均无实际意义。  
+本项目强烈不建议大规模商用，容易引起图标纠纷
