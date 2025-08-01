@@ -116,6 +116,12 @@
 	bottom=0pt,
 	colback=gray!40,
 	colframe=white,
+	coltitle=black,
+	title style={
+		color=black,
+		font=\small, 
+		fill=gray!40,
+	},
 	enlarge left by=0mm,
 	boxsep=0pt,
 	arc=0pt,outer arc=0pt,
@@ -223,8 +229,8 @@
 镜像源文件格式为\\
 \textcolor{code}{Server = [镜像源地址]}\\
 如果你在CN，可以使用以下镜像源\\
-清华源：\textcolor{code}{Server = https://mirrors.tuna.tsinghua.edu/archlinux/$repo/os/$arch}\\
-中科大源：\textcolor{code}{Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch}\\
+清华源：\textcolor{code}{Server = https://mirrors.tuna.tsinghua.edu/archlinux/\$repo/os/\$arch}\\
+中科大源：\textcolor{code}{Server = https://mirrors.ustc.edu.cn/archlinux/\$repo/os/\$arch}\\
 或自动选择最快镜像\\
 \begin{tcolorbox}[
 	title=bash,
