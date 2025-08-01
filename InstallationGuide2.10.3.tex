@@ -11,8 +11,8 @@
 \newenvironment{singlecolumn}{%
 	\par
 	\noindent
-	\begin{minipage}[t]{\textwidth} % 关键约束
-		\setlength{\parfillskip}{0pt plus 1fil} % 防止右对齐
+	\begin{minipage}[t]{\textwidth}
+		\setlength{\parfillskip}{0pt plus 1fil}
 	}{%
 	\end{minipage}
 	\par
@@ -124,8 +124,6 @@
 
 \begin{document}
 \begin{singlecolumn}
-	\vspace*{6\baselineskip} % 精确控制6行空白
-	\noindent % 防止缩进
 \begin{tcolorbox}
 \section*{安装前准备}
 \end{tcolorbox}
